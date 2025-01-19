@@ -21,7 +21,7 @@ set_property(CACHE QES_linkingType PROPERTY STRINGS SHARED STATIC)
 add_compile_definitions(_USE_MATH_DEFINES)
 #library
 file(GLOB_RECURSE QES_SRC "src/*.cpp" "src/*.h" "include/*.h")
-add_library(${PROJECT_NAME} ${QES_linkingType} ${QES_SRC})
+add_library(${PROJECT_NAME} STATIC ${QES_SRC})
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>)
 
