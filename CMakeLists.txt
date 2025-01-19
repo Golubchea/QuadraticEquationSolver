@@ -24,7 +24,7 @@ file(GLOB_RECURSE QES_SRC "src/*.cpp" "src/*.h" "include/*.h")
 add_library(${PROJECT_NAME} ${QES_linkingType} ${QES_SRC})
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>)
-target_link_libraries(${PROJECT_NAME} PUBLIC m)
+target_compile_definitions(${PROJECT_NAME} PUBLIC _USE_MATH_DEFINES)
 
 
 #testing
