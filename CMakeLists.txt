@@ -29,17 +29,20 @@ target_link_libraries(${PROJECT_NAME} PUBLIC m)
 
 #testing
 if(QES_UNIT_TESTING)
+    enable_testing()
     add_subdirectory(externals/googletest)
     include_directories(externals/googletest/googletest/include)
     file(GLOB_RECURSE QES_TESTS "tests/*.cpp")
     foreach(TEST_SOURCE ${QES_TESTS})
         get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
-
         add_executable(${TEST_NAME} ${TEST_SOURCE})
-
         target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME} GTest::gtest_main )
 
-        add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+        add_test(
+          NAME ${TEST_NAME}
+          COMMAND $<TARGET_FILE:${TEST_NAME}>
+        )
+
     endforeach()
 endif()
 
